@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import { Card, Form, Button } from 'react-bootstrap'
 import axios from 'axios'
+import Result from './Result'
 
 class DynamicForm extends Component {
     constructor() {
         super();
         this.state = {
-            ingredients: [{ name : "" }]
+            ingredients: [{ name : "" }],
+            result: ""
         };
     }
 
@@ -38,47 +40,50 @@ class DynamicForm extends Component {
         });
         }
     };
-
+    
     render() {
         return (
-            <Card style={{ 'marginTop': '10px'}}>
-                <h4 className="text-center">Ingredients</h4>
-                <div class="">
-                    <Button style={{'margin' : '15px'}} onClick={this.handleAddIngredient}>
-                        Add Ingredient
-                    </Button>
-                </div>
-                <Form>
-                    {this.state.ingredients.map((ingredient, idx) => (
-                        <Form.Group style={{'margin' : '15px'}}>
-                            <Form.Label for="description">Ingredient #{idx+1}</Form.Label>
-                            <div class="form-row">
-                                <div class="form-groip col-md-10">
-                                    <Form.Control
-                                        type="text"
-                                        name="name"
-                                        value={ingredient.name}
-                                        onChange={this.handleIngredientNameChange(idx)}
-                                        placeholder="Enter ingredient name"
-                                    />
-                                </div>
-                                <div class="form-group col">
-                                    <Button variant="danger" onClick={this.handleRemoveIngredient(idx)}>
-                                        Remove
-                                    </Button>
-                                </div>
-                            </div>
-                        </Form.Group>
-                    ))}
-                </Form>
-                <center>
-                    <div style={{ 'margin' : '10px'}}>
-                        <Button variant="success" onClick={this.handleSubmit}>
-                            Predict
+            <React.Fragment>
+                <Card style={{ 'marginTop': '25px'}}>
+                    <h4 className="text-center">Ingredients</h4>
+                    <div class="">
+                        <Button style={{'margin' : '15px'}} onClick={this.handleAddIngredient}>
+                            Add Ingredient
                         </Button>
                     </div>
-                </center>
-            </Card>
+                    <Form>
+                        {this.state.ingredients.map((ingredient, idx) => (
+                            <Form.Group style={{'margin' : '15px'}}>
+                                <Form.Label for="description">Ingredient #{idx+1}</Form.Label>
+                                <div class="form-row">
+                                    <div class="form-groip col-md-10">
+                                        <Form.Control
+                                            type="text"
+                                            name="name"
+                                            value={ingredient.name}
+                                            onChange={this.handleIngredientNameChange(idx)}
+                                            placeholder="Enter ingredient name"
+                                        />
+                                    </div>
+                                    <div class="form-group col">
+                                        <Button variant="danger" onClick={this.handleRemoveIngredient(idx)}>
+                                            Remove
+                                        </Button>
+                                    </div>
+                                </div>
+                            </Form.Group>
+                        ))}
+                    </Form>
+                    <center>
+                        <div style={{ 'margin' : '10px'}}>
+                            <Button variant="success" onClick={this.handleSubmit}>
+                                Predict
+                            </Button>
+                        </div>
+                    </center>
+                </Card>
+                <Result msg={this.state.result}/>
+            </React.Fragment>            
         )
     }
 }
