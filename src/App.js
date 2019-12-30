@@ -1,53 +1,34 @@
-import React from "react";
-import './App.css';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import React, { Component } from 'react'
+import DynamicForm from './components/DynamicForm'
+import { Card } from 'react-bootstrap'
 
-export default function App() {
-  return (
-    <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/users">Users</Link>
-            </li>
-          </ul>
-        </nav>
-        <Switch>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/users">
-            <Users />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
-  );
+class App extends Component {
+  render() {
+    return (
+      <main className="content">
+        <h1 className="text-white text-uppercase text-center my-4">What's Cooking</h1>
+        <div className="row">
+          <div className="col-md-6 col-sm-10 mx-auto p-0">
+          <Card>
+            <Card.Header>Guessing which cuisine is in Dinner?</Card.Header>
+            <Card.Body>
+              <blockquote className="blockquote mb-0">
+                <p>
+                  Welcome to what's cooking. The game is simple, you give us the ingredients, and we will guess the
+                  cuisine for you. 
+                </p>
+                <footer className="blockquote-footer">
+                  Holiday wishes and Bon Apetite!
+                </footer>
+              </blockquote>
+            </Card.Body>
+          </Card>
+          <DynamicForm />
+          </div>          
+        </div>
+      </main>
+    )
+  }
 }
 
-function Home() {
-  return <h2>Home</h2>;
-}
-
-function About() {
-  return <h2>About</h2>;
-}
-
-function Users() {
-  return <h2>Users</h2>; 
-}
+export default App
