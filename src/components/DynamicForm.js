@@ -29,27 +29,44 @@ class DynamicForm extends Component {
     }
 
     handleRemoveIngredient = idx => () => {
+        if (this.state.ingredients.length === 1) {
+            alert("At least one ingredient should be present");
+        } else {
         this.setState({
             ingredients : this.state.ingredients.filter((s, sidx) => idx !== sidx)
         });
+        }
     };
 
     render() {
         return (
-            <Card style={{ 'margin-top': '10px'}}>
+            <Card style={{ 'marginTop': '10px'}}>
                 <h4 className="text-center">Ingredients</h4>
+                <div class="">
+                    <Button style={{'margin' : '15px'}} onClick={this.handleAddIngredient}>
+                        Add Ingredient
+                    </Button>
+                </div>
                 <Form>
                     {this.state.ingredients.map((ingredient, idx) => (
                         <Form.Group style={{'margin' : '15px'}}>
                             <Form.Label for="description">Ingredient #{idx+1}</Form.Label>
-                            <Form.Control
-                                type="text"
-                                name="name"
-                                value={ingredient.name}
-                                onChange={this.handleIngredientNameChange}
-                                placeholder="Enter ingredient name"
-                            />
-                            
+                            <div class="form-row">
+                                <div class="form-groip col-md-10">
+                                    <Form.Control
+                                        type="text"
+                                        name="name"
+                                        value={ingredient.name}
+                                        onChange={this.handleIngredientNameChange(idx)}
+                                        placeholder="Enter ingredient name"
+                                    />
+                                </div>
+                                <div class="form-group col">
+                                    <Button variant="danger" onClick={this.handleRemoveIngredient(idx)}>
+                                        Remove
+                                    </Button>
+                                </div>
+                            </div>
                         </Form.Group>
                     ))}
                 </Form>
