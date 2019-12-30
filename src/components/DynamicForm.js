@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Card, Form, Button } from 'react-bootstrap'
+import axios from 'axios'
 
 class DynamicForm extends Component {
     constructor() {
@@ -70,6 +71,13 @@ class DynamicForm extends Component {
                         </Form.Group>
                     ))}
                 </Form>
+                <center>
+                    <div style={{ 'margin' : '10px'}}>
+                        <Button variant="success" onClick={this.handleSubmit}>
+                            Predict
+                        </Button>
+                    </div>
+                </center>
             </Card>
         )
     }
