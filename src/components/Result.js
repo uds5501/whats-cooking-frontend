@@ -6,6 +6,10 @@ class Result extends React.Component {
             return (
                 <h4> Hit predict to get your result</h4>
             )
+        } else if (this.props.msg === "wait") {
+            return (
+                <h4> Please wait ... </h4>
+            )
         } else {
             return (
                 <div>

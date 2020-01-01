@@ -22,7 +22,11 @@ class DynamicForm extends Component {
 
     handleSubmit = eve => {
         const { ingredients } = this.state;
-        alert(`Ingredients are of length ${ingredients.length}`);
+        this.setState({'result':'wait'})
+        axios
+            .post("/results/", ingredients)
+            .then(res => this.setState({'result': res['data']}))
+        
     }
 
     handleAddIngredient = () => {
@@ -56,7 +60,7 @@ class DynamicForm extends Component {
                             <Form.Group style={{'margin' : '15px'}}>
                                 <Form.Label for="description">Ingredient #{idx+1}</Form.Label>
                                 <div class="form-row">
-                                    <div class="form-groip col-md-10">
+                                    <div class="form-group col-lg-10 col-md-7 col-sm-3 col-xs-3">
                                         <Form.Control
                                             type="text"
                                             name="name"
