@@ -1,3 +1,6 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/bb5e77ca-3e5c-4a57-bd1c-bf04413351f3/deploy-status)](https://app.netlify.com/sites/whats-cooking-frontend-cd/deploys)
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
