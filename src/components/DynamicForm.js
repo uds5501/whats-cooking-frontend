@@ -26,6 +26,7 @@ class DynamicForm extends Component {
         axios
             .post("/results/", ingredients)
             .then(res => this.setState({'result': res['data']}))
+            .catch(error => this.setState({'result': 'error'}))
         
     }
 

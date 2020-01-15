@@ -10,6 +10,10 @@ class Result extends React.Component {
             return (
                 <h4> Please wait ... </h4>
             )
+        } else if (this.props.msg === "error") {
+            return (
+                <h4> Oops, the server isn't configured yet ... </h4>
+            )
         } else {
             return (
                 <div>
